@@ -1,0 +1,3 @@
+#IGNORE DEBUG FILES
+bin/Debug/
+obj/Debug/
