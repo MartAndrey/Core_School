@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s6l+85HIwILTRUC6w8y0RUWYo0Yz4obHJGeMpIpvGkJXzQdULUthCatLYaXszUKYl2dd+ZYT2GMjbVH+ZiQnyA==",
+  "dgSpecHash": "aDgYPJV/x39MDGRWNVqCZy0dwq+Sxsn7sXo8sFbWEusEZRJs8JSo3zGdnRIY+eIMcHYQTP8jIIDmpkyAR3YUSg==",
   "success": true,
-  "projectFilePath": "/home/andreym/cursoC#/coreSchool/Stage1.csproj",
+  "projectFilePath": "/home/andreym/cursoC#/coreSchool/coreSchool.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

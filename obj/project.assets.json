@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/andreym/cursoC#/coreSchool/Stage1.csproj",
-      "projectName": "Stage1",
-      "projectPath": "/home/andreym/cursoC#/coreSchool/Stage1.csproj",
+      "projectUniqueName": "/home/andreym/cursoC#/coreSchool/coreSchool.csproj",
+      "projectName": "coreSchool",
+      "projectPath": "/home/andreym/cursoC#/coreSchool/coreSchool.csproj",
       "packagesPath": "/home/andreym/.nuget/packages/",
       "outputPath": "/home/andreym/cursoC#/coreSchool/obj/",
       "projectStyle": "PackageReference",
