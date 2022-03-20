@@ -32,6 +32,7 @@ namespace CoreSchool
 
                 Regex validationMenu = new Regex("^[0-9]{1}$");
                 Regex otherValidations = new Regex("^[1-4]{1}$");
+                Regex topValidations = new Regex("[0-9]");
 
                 if (validationMenu.IsMatch(option))
                 {
@@ -248,29 +249,42 @@ namespace CoreSchool
                             break;
 
                         case 8:
+
                             Console.Clear();
                             Printer.WriteTitle("Enter the \"TOP\" number of students with the best average that you want to see");
-                            int top = Int32.Parse(Console.ReadLine());
+                            Console.WriteLine("NOTE: If the amount entered is greater than students, only the total number of students will be displayed");
+                            string top = Console.ReadLine();
 
-                            var bestAverage = reporter.GetBestAverangeByStudent(top);
-
-                            foreach (var item in bestAverage)
+                            if (topValidations.IsMatch(top))
                             {
-                                int i = 0;
-                                Console.WriteLine("");
-                                Printer.WriteTitle(item.Key);
-                                Console.WriteLine("");
+                                int selectTop = Int32.Parse(top);
 
-                                foreach (var val in item.Value)
+                                var bestAverage = reporter.GetBestAverangeByStudent(selectTop);
+
+                                foreach (var item in bestAverage)
                                 {
-                                    i++;
-                                    Console.WriteLine($"{i}. {val}");
-                                }
-                            }
+                                    int i = 0;
+                                    Console.WriteLine("");
+                                    Printer.WriteTitle(item.Key);
 
-                            Console.WriteLine("");
-                            SchoolEngine.EndProgram();
-                            Console.Clear();
+                                    foreach (var val in item.Value)
+                                    {
+                                        i++;
+                                        Console.WriteLine($"{i}. {val}");
+                                    }
+                                }
+
+                                Console.WriteLine("");
+                                SchoolEngine.EndProgram();
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                Printer.WriteTitle("Please enter a correct value");
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
                             break;
 
                         case 9:
@@ -287,108 +301,121 @@ namespace CoreSchool
 
                             if (otherValidations.IsMatch(subjectTop))
                             {
-
-                                Printer.WriteTitle("Enter the \"TOP\" number of students with the best average that you want to see");
-
-                                int topOne = Int32.Parse(Console.ReadLine());
                                 int numberSubjectTop = Int32.Parse(subjectTop);
 
-                                var bestAverageO = reporter.GetBestAverangeByStudent(topOne);
+                                Printer.WriteTitle("Enter the \"TOP\" number of students with the best average that you want to see");
+                                Console.WriteLine("NOTE: If the amount entered is greater than students, only the total number of students will be displayed");
 
-                                switch (numberSubjectTop)
+                                string topOne = Console.ReadLine();
+
+                                if (topValidations.IsMatch(topOne))
                                 {
-                                    case 1:
-                                        int j = 1;
+                                    int selectTopOne = Int32.Parse(topOne);
 
-                                        if (bestAverageO.TryGetValue("Maths", out IEnumerable<AverageStudent> listMaths))
-                                        {
-                                            Console.Clear();
+                                    var bestAverageO = reporter.GetBestAverangeByStudent(selectTopOne);
 
-                                            Console.WriteLine("");
-                                            Printer.WriteTitle("MATH");
-                                            Console.WriteLine("");
+                                    switch (numberSubjectTop)
+                                    {
+                                        case 1:
+                                            int j = 1;
 
-                                            foreach (var item in listMaths)
+                                            if (bestAverageO.TryGetValue("Maths", out IEnumerable<AverageStudent> listMaths))
                                             {
-                                                Console.WriteLine($"{j}. {item}");
-                                                j++;
+                                                Console.Clear();
+
+                                                Console.WriteLine("");
+                                                Printer.WriteTitle("MATH");
+                                                Console.WriteLine("");
+
+                                                foreach (var item in listMaths)
+                                                {
+                                                    Console.WriteLine($"{j}. {item}");
+                                                    j++;
+                                                }
                                             }
-                                        }
 
-                                        Console.WriteLine("");
-                                        SchoolEngine.EndProgram();
-                                        Console.Clear();
-                                        break;
-
-                                    case 2:
-
-                                        int z = 1;
-
-                                        if (bestAverageO.TryGetValue("Physical Education", out IEnumerable<AverageStudent> listPhysicalEducation))
-                                        {
+                                            Console.WriteLine("");
+                                            SchoolEngine.EndProgram();
                                             Console.Clear();
+                                            break;
 
-                                            Console.WriteLine("");
-                                            Printer.WriteTitle("PHYSICAL EDUCATION");
-                                            Console.WriteLine("");
+                                        case 2:
 
-                                            foreach (var item in listPhysicalEducation)
+                                            int z = 1;
+
+                                            if (bestAverageO.TryGetValue("Physical Education", out IEnumerable<AverageStudent> listPhysicalEducation))
                                             {
-                                                Console.WriteLine($"{z}. {item}");
-                                                z++;
+                                                Console.Clear();
+
+                                                Console.WriteLine("");
+                                                Printer.WriteTitle("PHYSICAL EDUCATION");
+                                                Console.WriteLine("");
+
+                                                foreach (var item in listPhysicalEducation)
+                                                {
+                                                    Console.WriteLine($"{z}. {item}");
+                                                    z++;
+                                                }
                                             }
-                                        }
 
-                                        Console.WriteLine("");
-                                        SchoolEngine.EndProgram();
-                                        Console.Clear();
-                                        break;
-
-                                    case 3:
-                                        int w = 1;
-
-                                        if (bestAverageO.TryGetValue("Spanish", out IEnumerable<AverageStudent> listSpanish))
-                                        {
+                                            Console.WriteLine("");
+                                            SchoolEngine.EndProgram();
                                             Console.Clear();
+                                            break;
 
-                                            Console.WriteLine("");
-                                            Printer.WriteTitle("SPANISH");
-                                            Console.WriteLine("");
+                                        case 3:
+                                            int w = 1;
 
-                                            foreach (var item in listSpanish)
+                                            if (bestAverageO.TryGetValue("Spanish", out IEnumerable<AverageStudent> listSpanish))
                                             {
-                                                Console.WriteLine($"{w}. {item}");
-                                                w++;
+                                                Console.Clear();
+
+                                                Console.WriteLine("");
+                                                Printer.WriteTitle("SPANISH");
+                                                Console.WriteLine("");
+
+                                                foreach (var item in listSpanish)
+                                                {
+                                                    Console.WriteLine($"{w}. {item}");
+                                                    w++;
+                                                }
                                             }
-                                        }
 
-                                        Console.WriteLine("");
-                                        SchoolEngine.EndProgram();
-                                        Console.Clear();
-                                        break;
-
-                                    case 4:
-                                        int k = 1;
-
-                                        if (bestAverageO.TryGetValue("Natural Sciences", out IEnumerable<AverageStudent> listNaturalSciences))
-                                        {
+                                            Console.WriteLine("");
+                                            SchoolEngine.EndProgram();
                                             Console.Clear();
+                                            break;
 
-                                            Console.WriteLine("");
-                                            Printer.WriteTitle("NATURAL SCIENCES");
-                                            Console.WriteLine("");
+                                        case 4:
+                                            int k = 1;
 
-                                            foreach (var item in listNaturalSciences)
+                                            if (bestAverageO.TryGetValue("Natural Sciences", out IEnumerable<AverageStudent> listNaturalSciences))
                                             {
-                                                Console.WriteLine($"{k}. {item}");
-                                                k++;
-                                            }
-                                        }
+                                                Console.Clear();
 
-                                        Console.WriteLine("");
-                                        SchoolEngine.EndProgram();
-                                        Console.Clear();
-                                        break;
+                                                Console.WriteLine("");
+                                                Printer.WriteTitle("NATURAL SCIENCES");
+                                                Console.WriteLine("");
+
+                                                foreach (var item in listNaturalSciences)
+                                                {
+                                                    Console.WriteLine($"{k}. {item}");
+                                                    k++;
+                                                }
+                                            }
+
+                                            Console.WriteLine("");
+                                            SchoolEngine.EndProgram();
+                                            Console.Clear();
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                                    Printer.WriteTitle("Please enter a correct value");
+                                    Console.ForegroundColor = ConsoleColor.White;
                                 }
                             }
                             else

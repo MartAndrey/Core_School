@@ -88,13 +88,13 @@ namespace CoreSchool.App
             return rta;
         }
 
-        public Dictionary<string, IEnumerable<AverageStudent>> GetBestAverangeByStudent(int topAverage = 10)
+        public Dictionary<string, IEnumerable<AverageStudent>> GetBestAverangeByStudent( int topAverage = 10)
         {
             var rta = new Dictionary<string, IEnumerable<AverageStudent>>();
             var dicAverageStudBySubj = GetAverageStudentBySubject(); 
 
             foreach (var average in dicAverageStudBySubj)
-            {
+            { 
                 var BestStudent = (from AverageStudent eval in  average.Value
                                   orderby eval.average descending
                                   select eval).Take(topAverage);
